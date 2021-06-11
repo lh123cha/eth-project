@@ -1,0 +1,3 @@
+eth
+solc --bin --abi -o WaiMaiContract WaiMai.sol
+solc -bin -abi -o WaiMaiContract WaiMai.sol

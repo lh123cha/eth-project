@@ -1,0 +1,42 @@
+=============== Jun 10, 2021 (PDT) ===============
+07:44:29.493886 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+07:44:29.508081 db@open opening
+07:44:29.519265 version@stat F·[] S·0B[] Sc·[]
+07:44:29.525021 db@janitor F·2 G·0
+07:44:29.525250 db@open done T·16.949422ms
+07:44:29.534767 db@close closing
+07:44:29.534894 db@close done T·128.85µs
+=============== Jun 10, 2021 (PDT) ===============
+07:44:29.538479 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+07:44:29.538757 version@stat F·[] S·0B[] Sc·[]
+07:44:29.538786 db@open opening
+07:44:29.538833 journal@recovery F·1
+07:44:29.553524 journal@recovery recovering @1
+07:44:29.557019 version@stat F·[] S·0B[] Sc·[]
+07:44:29.558391 db@janitor F·2 G·0
+07:44:29.558405 db@open done T·19.612835ms
+07:44:29.642578 memdb@flush N·37 S·4KiB
+07:44:29.650142 memdb@flush created L0@5 N·37 S·1KiB "\x03\x95\x06..\v_I,v13":"\xc2Ǚ..|\xf8`,v16"
+07:44:29.650178 version@stat F·[1] S·1KiB[1KiB] Sc·[0.25]
+07:44:29.656348 memdb@flush committed F·1 T·13.710221ms
+07:44:29.656488 journal@remove removed @2
+07:44:29.656507 table@compaction range L-1 "a":"b"
+07:44:29.656522 table@compaction L0·1 -> L1·0 S·1KiB Q·39
+07:44:29.659909 table@build created L1@6 N·35 S·1KiB "\x03\x95\x06..\v_I,v13":"\xc2Ǚ..|\xf8`,v16"
+07:44:29.659958 version@stat F·[0 1] S·1KiB[0B 1KiB] Sc·[0.00 0.00]
+07:44:29.671553 table@compaction committed F~ S-25B Ke·0 D·2 T·15.015031ms
+07:44:29.678942 memdb@flush N·2 S·264B
+07:44:29.680346 memdb@flush created L0@8 N·2 S·435B "cli..\xac^\xfe,v39":"unc..own,v38"
+07:44:29.707231 version@stat F·[1 1] S·2KiB[435B 1KiB] Sc·[0.25 0.00]
+07:44:29.709537 memdb@flush committed F·1 T·3.696277ms
+07:44:29.709623 journal@remove removed @4
+07:44:29.710533 table@compaction range L-1 "o":"p"
+07:44:29.710553 table@compaction L0·1 -> L1·1 S·2KiB Q·39
+07:44:29.715255 table@build created L1@9 N·37 S·2KiB "\x03\x95\x06..\v_I,v13":"\xc2Ǚ..|\xf8`,v16"
+07:44:29.716386 version@stat F·[0 1] S·2KiB[0B 2KiB] Sc·[0.00 0.00]
+07:44:29.724399 table@compaction committed F-1 S+47B Ke·0 D·0 T·13.816266ms
+07:44:30.143043 table@remove removed @5
+07:44:30.144227 table@remove removed @8
+07:44:30.145565 table@remove removed @6
+07:51:40.858385 db@close closing
+07:51:40.858787 db@close done T·401.558µs
