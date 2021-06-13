@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69533b93-0c3e-4f74-90ea-41a9010711cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaiMai.sol" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaiMai/WaiMai.abi" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaiMai/WaiMai.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/registe.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/registe.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +96,8 @@
       <workItem from="1623319028507" duration="755000" />
       <workItem from="1623320368163" duration="5280000" />
       <workItem from="1623334188635" duration="2423000" />
-      <workItem from="1623386936496" duration="438000" />
+      <workItem from="1623386936496" duration="1665000" />
+      <workItem from="1623418010712" duration="17000" />
     </task>
     <servers />
   </component>

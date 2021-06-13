@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Axios from 'axios'
-
+import VueResource from "vue-resource"
+Vue.use(VueResource);
 Vue.prototype.HOST = 'http://localhost:5000'
 
 import ElementUI from 'element-ui'
