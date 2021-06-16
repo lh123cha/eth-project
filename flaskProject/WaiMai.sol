@@ -13,27 +13,117 @@ contract WaiMai {
         string dept;    // dept
     }
 
+    struct Deal{
+        uint id;
+        string text;
+        address send_user;
+        uint money;
+        address receive_user;
+        bool is_finish;
+    }
+
     uint num;   // user数目
     uint[] ids; //id数组
-    User[] users;   // 存储所有student的数据
+    User[] users;   // 存储所有user的数据
     mapping(address => uint) userId;  // 地址到id的映射
     mapping(address => bool) isPlay;    // 判断某个地址（即账户）是否参与
     //event Insert(uint id);
+    uint deal_num; //deal数目
+    uint[] deal_ids;
+    Deal[] deals;
+    
+    User current_user = User(address(0x0), 0,"null", "null", 0, "null");
+    User deal_user = User(address(0x0), 0,"null", "null", 0, "null");
+    Deal current_deal = Deal(0,"null",address(0x0),0,address(0x0),false);
+
 
     constructor() {
         num = 0;
+        deal_num = 0;
+    
     }
 
+    //test智能合约用来测试是否连上了以太坊，是测试用例
+    function test() public view returns (uint n){
+        return num;
+    }
+
+
+    //insert user
     function insert_user(string memory _name,string memory _tel,string memory _dept) public {
         require(!isPlay[msg.sender]);
         users.push(User(msg.sender, num,_name, _tel, 100, _dept));
         ids.push(num);
         userId[msg.sender] = num;
+        isPlay[msg.sender] = true;
         num += 1;
         //uint id = _id;
         //emit Insert(id);
     }
+ 
+    //insert deal
+    function insert_deal(string memory _text,uint _money) public {
+        require(isPlay[msg.sender]);
+        
+        for (uint i = 0; i < num; ++i) {
+            if (users[i].addr == msg.sender) {
+                current_user = users[i];
+            }
+        }
+        deals.push(Deal(deal_num,_text,msg.sender,_money,address(0x0),false));
+        deal_ids.push(deal_num);
+        deal_num += 1;
+    }
 
+    //get all deals
+    function select_all() public view returns (Deal[] memory) {
+        require(deal_num>0);
+        return deals;
+    }
+
+
+    //finish a deal
+    function finish_deal(uint _id) public{
+        require(deal_num>0);
+        require(isPlay[msg.sender]);
+
+        for (uint i = 0; i < deal_num; ++i) {
+            if (deals[i].id == _id) {
+                current_deal = deals[i];
+                require(deals[i].is_finish == false);
+                deals[i].receive_user = msg.sender;
+                deals[i].is_finish = true;
+            }
+        }
+
+        require(current_deal.send_user!=msg.sender);
+
+        uint deal_money = current_deal.money;
+
+
+        for (uint i = 0; i < num; ++i) {
+            if (users[i].addr == msg.sender) {
+                current_user = users[i];
+                require(users[i].money>deal_money);
+                users[i].money = users[i].money - deal_money;
+            }
+        }
+
+        for (uint i = 0; i < num; ++i) {
+            if (users[i].addr == current_deal.send_user) {
+                deal_user = users[i];
+                users[i].money = users[i].money + deal_money;
+            }
+        }
+
+    
+    }
+
+
+
+
+
+//unused
     function select_count() public view returns (uint n){
         return num;
     }
@@ -45,7 +135,7 @@ contract WaiMai {
 
     function select_id(uint _id) public view returns (User memory){
         require(num>0);
-        //require(isPlay[msg.sender]);
+        require(isPlay[msg.sender]);
         for (uint i = 0; i < num; ++i) {
             if (users[i].id == _id) {
                 return users[i];

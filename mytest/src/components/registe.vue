@@ -52,35 +52,11 @@ export default{
       };
       console.log(params);
 
-      //xxxaction.action?methodName=queryUser
-      //axios之get请求：在传递参数的时候，必须黄JSON对象保存到paramas属性中，否则无效
-      /* axios.get('http://localhost:8080/j2eeVue/userAction.action', {//注意数据是保存到json对象的params属性
-        params:params
-      }).then(function (response) {
-        console.log(response.data);
-      }).catch(function (error) {
-        console.log(error);
-      }); */
-
-      /* let str=qs.stringify(params);
-      //注意数据是直接保存到json对象
-      axios.post('http://localhost:8080/j2eeVue/userAction.action'
-      , str).then(function (response) {
-        console.log(response);
-      }).catch(function (error) {
-      console.log(error);
-      }); */
-
-      /* this.axios.get(this.axios.urls.SYSTEM_USER_DOLOGIN, {
-        params:params
-      }).then(resp => {
-        console.log(response.data);
-      }).catch(resp =>{}); */
-
-      this.$axios.post(this.HOST+'/add'
+      this.$axios.post(this.HOST+'/information'
         , params).then(result=>{
-        console.log(result.data)
-        this.msg = result.data.msg
+        console.log(result.data);
+        this.msg = result.data.msg;
+        this.$router.push('/order_home');
       }).catch(resp =>{
         console.log(resp);
       });

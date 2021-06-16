@@ -6,6 +6,7 @@ import Login from '@/components/login'
 import Allorder from '@/components/allorder'
 import Home from '@/components/home'
 import Sendorder from '@/components/order/sendorder'
+import Myorder from '@/components/order/myorder'
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +30,9 @@ export default new Router({
       },{
           path:'/order_home/sendorder',
           component:Sendorder
+        },{
+          path:'/order_home/myorder',
+          component:Myorder
         }
       ]
     }

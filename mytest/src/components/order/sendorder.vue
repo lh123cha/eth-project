@@ -38,10 +38,9 @@ export default{
         name: '',
         money:'',
         tip:'',
-        region: '',
         date1: '',
         date2: '',
-        delivery: false,
+
         type: [],
         resource: '',
         desc: ''
@@ -51,8 +50,11 @@ export default{
   methods:{
     doRegiste:function(){
       let params={
-        name:this.name,
-        tel:this.tel,
+        name:this.form.name,
+        money:this.form.money,
+        tip:this.form.tip,
+        date1: this.form.date1,
+        date2:this.form.date2,
         dept:this.dept,
         methodName:'userRegiste',
         msg:''

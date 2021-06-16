@@ -76,12 +76,14 @@ export default {
         username:'lh',
         email:'25',
         operation:'带饭',
-        submission_date:'25分钟'
+        submission_date:'带瓶快乐水，有小费',
+        time:'25min'
       },{
         username:'czr',
-        email:'25',
-        operation:'洗衣服',
-        submission_date:'2天'
+        email:'2',
+        operation:'大作业问卷调查帮答',
+        submission_date:'全部作答，需要认真作答，作答完毕有奖励！！！',
+        time:'明天之前完成'
       }],
       dialogFormVisible: false,
       formLabelWidth: '80px',
