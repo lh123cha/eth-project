@@ -8,24 +8,26 @@
 
     <div class="tableMain">
       <el-table :data="tableData" style="width: 100%">
+        <el-table-column prop="id" label="订单号" width="180">
+        </el-table-column>
         <el-table-column prop="username" label="订单发起方" width="180">
         </el-table-column>
-        <el-table-column prop="email" label="金额" width="180" sortable>
+        <el-table-column prop="money" label="金额" width="180" sortable>
         </el-table-column>
 
-        <el-table-column prop="operation" label="任务" width="180">
+        <el-table-column prop="mission" label="任务" width="180">
         </el-table-column>
 
-        <el-table-column prop="submission_date" label="备注">
+        <el-table-column prop="tip" label="备注">
         </el-table-column>
 
-        <el-table-column prop="time" label="时间限制" sortable>
+        <el-table-column prop="time" label="剩余时间" sortable>
         </el-table-column>
 
         <el-table-column label="操作">
 
           <template slot-scope="scope">
-            <el-button size="small" @click="handleBan(scope.$index, scope.row)">接单
+            <el-button size="small" type="success" @click="handleBan(scope.$index, scope.row)">接单
             </el-button>
             <el-button size="small" type="danger" @click="handleAllow(scope.$index, scope.row)">取消接单
             </el-button>
@@ -73,16 +75,18 @@ export default {
     return {
       loading: true,
       tableData: [{
+        id:'2021061701',
         username:'lh',
-        email:'25',
-        operation:'带饭',
-        submission_date:'带瓶快乐水，有小费',
+        money:'25',
+        mission:'带饭',
+        tip:'带瓶快乐水，有小费',
         time:'25min'
       },{
+        id:'2021061702',
         username:'czr',
-        email:'2',
-        operation:'大作业问卷调查帮答',
-        submission_date:'全部作答，需要认真作答，作答完毕有奖励！！！',
+        money:'2',
+        mission:'大作业问卷调查帮答',
+        tip:'全部作答，需要认真作答，作答完毕有奖励！！！',
         time:'明天之前完成'
       }],
       dialogFormVisible: false,
@@ -99,7 +103,7 @@ export default {
     }, 1500)
     this.$nextTick(() => {
       // 在此处执行你要执行的函数
-      this.axios.post(this.HOST+'/admin').then(result=>{
+      this.$axios.post(this.HOST+'/output').then(result=>{
         this.tableData=result.data
       })
     });
@@ -132,20 +136,20 @@ export default {
       }).then(() => {
         this.form = this.tableData[index]
         this.currentIndex = index
-        let username=this.form.username
-        this.axios.post(this.HOST+'/admin/bin',username).then(result=>{
+        let orderid=this.form.id
+        this.$axios.post(this.HOST+'/admin/bin',orderid).then(result=>{
           console.log(result.data)
         }).catch(resp =>{
           console.log(resp);
         });
         this.$message({
           type: 'success',
-          message: '禁止成功!'
+          message: '接单成功!'
         })
       }).catch(() => {
         this.$message({
           type: 'info',
-          message: '已取消禁止'
+          message: '接单错误'
         })
       })
       this.dialogFormVisible = false
@@ -154,7 +158,7 @@ export default {
       this.form=this.tableData[index]
       this.currentIndex = index
       let username=this.form.username
-      this.axios.post(this.HOST+'/admin/allow',username).then(result=>{
+      this.$axios.post(this.HOST+'/admin/allow',).then(result=>{
         console.log(result.data)
         this.$message({
           type: 'info',

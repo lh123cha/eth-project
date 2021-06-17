@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69533b93-0c3e-4f74-90ea-41a9010711cc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../flaskProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../flaskProject/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaiMai.sol" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaiMai/WaiMai.abi" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai/WaiMai.abi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaiMai/WaiMai.bin" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai/WaiMai.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mytest/src/components/allorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/allorder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/leftMenu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/leftMenu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/myorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/myorder.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/sendorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/sendorder.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mytest/src/components/registe.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/registe.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../flaskProject" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -107,6 +108,9 @@
       <workItem from="1623731821898" duration="2256000" />
       <workItem from="1623737816559" duration="57000" />
       <workItem from="1623744749432" duration="4426000" />
+      <workItem from="1623858587207" duration="624000" />
+      <workItem from="1623895573232" duration="4994000" />
+      <workItem from="1623912819108" duration="2112000" />
     </task>
     <servers />
   </component>
@@ -114,7 +118,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flaskProject$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1623333594361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/flaskProject$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1623914255368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flaskProject$flaskProject.coverage" NAME="flaskProject Coverage Results" MODIFIED="1622790826409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flaskProject613$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1623748553316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flaskProject2$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1623575722399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

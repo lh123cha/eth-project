@@ -1,7 +1,7 @@
 import string
 import json
 from flask import Flask, render_template, request
-#from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from web3_deploy import *
 from flask_cors import CORS
 
@@ -31,7 +31,6 @@ def valid():
             #return render_template('information.html')
             res_list = {}
             data = json.loads(json.dumps(res_list))
-
             data['status'] = 1
             data['msg'] = "success"
             res = json.dumps(data, ensure_ascii=False)
@@ -69,24 +68,23 @@ def add():
             json_data = json.loads(data.decode("utf-8"))
             name = json_data.get("name")
             money_string = json_data.get("money")
-            date1=json_data.get("date1")
-            date2=json_data.get("date2")
+            time=json_data.get("num_time")
             tip=json_data.get("tip")
             money = int(money_string)
-            deal = (name,money)
+            deal = (name,money,int(time),tip)
+            print(deal)
             tx_hash = WaiMai_contract.functions.insert_deal(*deal).transact()
             tx_receipt = eth.waitForTransactionReceipt(tx_hash)
-            #if student is None:
-            #    return "<h1>找不到该id对应的value</h1>"
-            #student = tuple(student)
-            return "<h1>发布信息成功</h1>"
+            in_json = '{"statue": 1, "msg": "add record success"}'
+            return json.loads(in_json)
         # except:
         #     return "<h1>发布信息失败</h1>"
 
 
-@app.route('/output')
+@app.route('/output',methods=['POST'])
 def output():
     # try:
+    if request.method == 'POST':
         deals = WaiMai_contract.functions.select_all().call()
         print(deals)
         list1 = []
@@ -94,11 +92,24 @@ def output():
             print(deal)
             print(len(deal))
             list2 = []
-            for j in range(6):
+            for j in range():
                 list2.append(deal[j])
             list1.append(list2)
             print(list1)
-        return render_template('output.html', list3=list1,now_user=eth.default_account)
+        jsonList=[]
+        aItem = {}
+        for list in list1:
+            aItem["id"]=list[0]
+            aItem["username"]=list[1]
+            aItem["money"]=list[2]
+            aItem["mission"]=list[3]
+            aItem["tip"]=list[4]
+            aItem["time"]=list[5]
+            jsonList.append(aItem)
+        jsonArr = json.dumps(jsonList, ensure_ascii=False)
+        return jsonArr
+
+        # return render_template('output.html', list3=list1,now_user=eth.default_account)
     # except:
     #     return "<h1>查看信息失败</h1>"
 

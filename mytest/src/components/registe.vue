@@ -1,7 +1,7 @@
 <template>
   <div  class="login-wrap">
     <el-form  class="login-container" :rules="rules">
-      <h1 class="title">add record</h1>
+      <h1 class="title">完善信息</h1>
       <el-form-item label="" prop="username_val">
         <el-input type="text" placeholder="student number" v-model="name" autocomplete="off"></el-input>
       </el-form-item>

@@ -14,12 +14,16 @@ contract WaiMai {
     }
 
     struct Deal{
-        uint id;
-        string text;
-        address send_user;
-        uint money;
-        address receive_user;
-        bool is_finish;
+        uint id;       //id
+        string text;   //text
+        address send_user;  //senduser address
+        uint money;     //money
+        address receive_user;   //receiveuser address
+        bool is_finish;  //whether deal is finish
+        uint left_hour;  //hour time left
+        bool is_timeout;  //whether time is out
+        string tip; //tip of the deal
+
     }
 
     uint num;   // user数目
@@ -34,7 +38,7 @@ contract WaiMai {
     
     User current_user = User(address(0x0), 0,"null", "null", 0, "null");
     User deal_user = User(address(0x0), 0,"null", "null", 0, "null");
-    Deal current_deal = Deal(0,"null",address(0x0),0,address(0x0),false);
+    Deal current_deal = Deal(0,"null",address(0x0),0,address(0x0),false,0,false,"null");
 
 
     constructor() {
@@ -62,15 +66,14 @@ contract WaiMai {
     }
  
     //insert deal
-    function insert_deal(string memory _text,uint _money) public {
-        require(isPlay[msg.sender]);
-        
+    function insert_deal(string memory _text,uint _money,uint _time,string memory _tip) public {
+        //require(isPlay[msg.sender]);
         for (uint i = 0; i < num; ++i) {
             if (users[i].addr == msg.sender) {
                 current_user = users[i];
             }
         }
-        deals.push(Deal(deal_num,_text,msg.sender,_money,address(0x0),false));
+        deals.push(Deal(deal_num,_text,msg.sender,_money,address(0x0),false,_time,false,_tip));
         deal_ids.push(deal_num);
         deal_num += 1;
     }
@@ -91,6 +94,7 @@ contract WaiMai {
             if (deals[i].id == _id) {
                 current_deal = deals[i];
                 require(deals[i].is_finish == false);
+                require(deals[i].is_timeout == false);
                 deals[i].receive_user = msg.sender;
                 deals[i].is_finish = true;
             }
@@ -115,9 +119,23 @@ contract WaiMai {
                 users[i].money = users[i].money + deal_money;
             }
         }
-
-    
     }
+
+
+     function update_dealtime(uint _time_minus_hour) public{
+        for (uint i = 0; i < deal_num; ++i) {
+            if(deals[i].left_hour>1){
+                deals[i].left_hour = deals[i].left_hour - _time_minus_hour;
+            }else{
+                deals[i].is_timeout = true;
+                deals[i].is_finish = true;
+            }
+            // if(deals[i].left_hour<0){
+            //     deals[i].is_timeout = true;
+            //     deals[i].is_finish = true;
+            // }
+        }
+     }
 
 
 

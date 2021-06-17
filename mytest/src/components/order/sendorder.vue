@@ -9,18 +9,15 @@
       </el-form-item>
       <el-form-item label="任务时间">
         <el-col :span="11">
-          <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+         <el-input-number v-model="form.num_time" :min="1" :max="24" label="时间"></el-input-number>
         </el-col>
-        <el-col class="line" :span="2">-</el-col>
-        <el-col :span="11">
-          <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-        </el-col>
+        <el-col class="line" :span="2">hour</el-col>
       </el-form-item>
       <el-form-item label="任务备注">
         <el-input v-model="form.tip"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">发布任务</el-button>
+        <el-button type="primary" @click="onSubmit()">发布任务</el-button>
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
@@ -38,9 +35,7 @@ export default{
         name: '',
         money:'',
         tip:'',
-        date1: '',
-        date2: '',
-
+        num_time:'',
         type: [],
         resource: '',
         desc: ''
@@ -48,14 +43,12 @@ export default{
     }
   },
   methods:{
-    doRegiste:function(){
+    onSubmit:function(){
       let params={
         name:this.form.name,
         money:this.form.money,
         tip:this.form.tip,
-        date1: this.form.date1,
-        date2:this.form.date2,
-        dept:this.dept,
+        num_time:this.form.num_time,
         methodName:'userRegiste',
         msg:''
       };
