@@ -137,7 +137,11 @@ export default {
         this.form = this.tableData[index]
         this.currentIndex = index
         let orderid=this.form.id
-        this.$axios.post(this.HOST+'/admin/bin',orderid).then(result=>{
+        let params={
+          Name:orderid
+        }
+        console.log("orderid is: "+orderid)
+        this.$axios.post(this.HOST+'/finish_deal',params).then(result=>{
           console.log(result.data)
         }).catch(resp =>{
           console.log(resp);

@@ -67,7 +67,7 @@ contract WaiMai {
  
     //insert deal
     function insert_deal(string memory _text,uint _money,uint _time,string memory _tip) public {
-        //require(isPlay[msg.sender]);
+        require(isPlay[msg.sender]);
         for (uint i = 0; i < num; ++i) {
             if (users[i].addr == msg.sender) {
                 current_user = users[i];
