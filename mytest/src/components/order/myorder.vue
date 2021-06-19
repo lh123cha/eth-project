@@ -28,9 +28,9 @@
         <el-table-column label="操作">
 
           <template slot-scope="scope">
-            <el-button size="small" type="success" @click="handleBan(scope.$index, scope.row)">完成订单
+            <el-button size="small" type="success" @click="handleFinish(scope.$index, scope.row)">完成订单
             </el-button>
-            <el-button size="small" type="danger" @click="handleAllow(scope.$index, scope.row)">取消接单
+            <el-button size="small" type="danger" @click="handleCancle(scope.$index, scope.row)">取消接单
             </el-button>
           </template>
         </el-table-column>
@@ -129,7 +129,7 @@ export default {
     },
 
 
-    handleBan(index, row) {
+    handleFinish(index, row) {
       this.$confirm('确定完成该订单', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -137,8 +137,11 @@ export default {
       }).then(() => {
         this.form = this.tableData[index]
         this.currentIndex = index
-        let orderid=this.form.id
-        this.$axios.post(this.HOST+'/admin/bin',orderid).then(result=>{
+        let params={
+          Name:this.form.id
+        }
+
+        this.$axios.post(this.HOST+'/finish_deal',params).then(result=>{
           console.log(result.data)
         }).catch(resp =>{
           console.log(resp);
@@ -155,19 +158,35 @@ export default {
       })
       this.dialogFormVisible = false
     },
-    handleAllow(index, row) {
-      this.form=this.tableData[index]
-      this.currentIndex = index
-      let orderid=this.form.id
-      this.$axios.post(this.HOST+'/admin/allow',orderid).then(result=>{
-        console.log(result.data)
+
+    handleCancle(index, row) {
+      this.$confirm('确定取消接收该订单', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.form = this.tableData[index]
+        this.currentIndex = index
+        let params={
+          Name:this.form.id
+        }
+
+        this.$axios.post(this.HOST+'/cancel_deal',params).then(result=>{
+          console.log(result.data)
+        }).catch(resp =>{
+          console.log(resp);
+        });
+        this.$message({
+          type: 'success',
+          message: '订单取消成功!'
+        })
+      }).catch(() => {
         this.$message({
           type: 'info',
-          message: '以启用该用户'
+          message: '取消失败'
         })
-      }).catch(resp =>{
-        console.log(resp);
-      });
+      })
+      this.dialogFormVisible = false
     },
 
 

@@ -6,10 +6,10 @@
         <el-input type="text" placeholder="student number" v-model="name" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="" prop="password_val">
-        <el-input type="password" placeholder="name" v-model="tel" autocomplete="off"></el-input>
+        <el-input type="text" placeholder="telephone" v-model="tel" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="" prop="email_val">
-        <el-input type="text" placeholder="sex" v-model="dept" autocomplete="off"></el-input>
+        <el-input type="text" placeholder="department" v-model="dept" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button style="" @click="doRegiste()">add</el-button>

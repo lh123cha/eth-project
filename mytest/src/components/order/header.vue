@@ -25,7 +25,7 @@ export default {
     return {
       activeIndex: '1',
       // username: window.localStorage.getItem('username')
-      username:'lh123'
+      username:'lh'
     }
   },
   methods: {

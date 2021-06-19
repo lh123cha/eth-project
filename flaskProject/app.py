@@ -3,9 +3,10 @@ import string
 from flask import Flask, render_template, request
 # from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from web3_deploy import *
-from user import User
+# from user import User
 from flask_cors import CORS
 import json
+from flask_apscheduler import APScheduler
 
 app = Flask(__name__)
 CORS(app)
@@ -88,7 +89,7 @@ def information():
 
 
 @app.route('/add', methods=['POST'])
-#@login_required
+# @login_required
 def add():
     if request.method == 'POST':
         # try:
@@ -111,24 +112,24 @@ def add():
     #     return "<h1>发布信息失败</h1>"
 
 
-@app.route('/output',methods=['POST'])
-#@login_required
+@app.route('/output', methods=['POST'])
+# @login_required
 def output():
     if request.method == 'POST':
         # eth.default_account = current_user.get_id()
         deals = WaiMai_contract.functions.select_all().call()
         list1 = []
         for deal in deals:
-            print("deal is :",deal)
+            print("deal is :", deal)
             list2 = []
             for j in range(9):
                 list2.append(deal[j])
             list1.append(list2)
-        print("list1 is: ",list1)
+        print("list1 is: ", list1)
         jsonList = []
         for list in list1:
             aItem = {}
-            print("list is ",list)
+            print("list is ", list)
             aItem["id"] = list[0]
             aItem["username"] = list[2]
             aItem["money"] = list[3]
@@ -170,12 +171,95 @@ def finish_deal():
             in_json = '{"statue": 1, "msg": "success"}'
             return json.loads(in_json)
         except:
-            in_json = '{"statue": 0, "msg": "faild"}'
+            in_json = '{"statue": 0, "msg": "failed"}'
             return json.loads(in_json)
     # except:
     #   return "<h1>接单失败</h1>"
 
 
+# 618 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# 取消订单和上面finish订单对应
+@app.route('/cancel_deal', methods=['POST'])
+# @login_required
+def cancel_deal():
+    if request.method == 'POST':
+        # try:
+        # eth.default_account = current_user.get_id()
+        try:
+            data = request.get_data()
+            print("data = %s" % data)
+            json_data = json.loads(data.decode("utf-8"))
+            name = json_data.get("Name")
+            deal_id = int(name)
+            print(eth.default_account)
+            print(deal_id)
+            tx_hash = WaiMai_contract.functions.cancel_deal(deal_id).transact()
+            tx_receipt = eth.waitForTransactionReceipt(tx_hash)
+            in_json = '{"statue": 1, "msg": "success"}'
+            return json.loads(in_json)
+        except:
+            in_json = '{"statue": 0, "msg": "failed"}'
+            return json.loads(in_json)
+    # except:
+    #   return "<h1>接单失败</h1>"
+
+
+# 618 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# 返回当前账户个人信息
+@app.route('/myself', methods=['POST'])
+# @login_required
+def myself():
+    if request.method == 'POST':
+        # eth.default_account = current_user.get_id()
+        my = WaiMai_contract.functions.select_myself().call()
+        print(my)
+        jsonList = []
+        aItem = {}
+        aItem["addr"] = my[0]
+        aItem["id"] = my[1]
+        aItem["name"] = my[2]
+        aItem["tel"] = my[3]
+        aItem["money"] = my[4]
+        aItem["dept"] = my[5]
+        jsonList.append(aItem)
+        print(jsonList)
+        jsonArr = json.dumps(jsonList, ensure_ascii=False)
+        return jsonArr
+
+
+# except:
+#     return "<h1>查看信息失败</h1>"
+
+
+# 618 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# 配置自动任务的类
+class Config(object):
+    JOBS = [
+        {
+            'id': 'job1',
+            'func': '__main__:update',
+            'trigger': 'interval',
+            'seconds': 10,
+
+        },
+    ]
+
+
+def update():
+    # try:
+        now_account = eth.default_account
+        eth.default_account = eth.accounts[0]
+        print("starting update!")
+        tx_hash = WaiMai_contract.functions.update_dealtime(1).transact()
+        tx_receipt = eth.waitForTransactionReceipt(tx_hash)
+        print("update success!")
+        eth.default_account = now_account;
+    # except:
+    #     print("update failed!")
+
+
+#unused
 @app.route('/query/<int:key>')
 # @login_required
 def query_process(key):
@@ -199,5 +283,8 @@ def query_process(key):
 #     return 'Logged out successfully!'
 
 if __name__ == '__main__':
+    app.config.from_object(Config())
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+    scheduler.start()
     app.run()
-

@@ -29,8 +29,6 @@
           <template slot-scope="scope">
             <el-button size="small" type="success" @click="handleBan(scope.$index, scope.row)">接单
             </el-button>
-            <el-button size="small" type="danger" @click="handleAllow(scope.$index, scope.row)">取消接单
-            </el-button>
           </template>
         </el-table-column>
 
@@ -158,22 +156,6 @@ export default {
       })
       this.dialogFormVisible = false
     },
-    handleAllow(index, row) {
-      this.form=this.tableData[index]
-      this.currentIndex = index
-      let username=this.form.username
-      this.$axios.post(this.HOST+'/admin/allow',).then(result=>{
-        console.log(result.data)
-        this.$message({
-          type: 'info',
-          message: '以启用该用户'
-        })
-      }).catch(resp =>{
-        console.log(resp);
-      });
-    },
-
-
     cancel() {
       this.dialogFormVisible = false
     },

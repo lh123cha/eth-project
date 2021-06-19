@@ -4,9 +4,14 @@
     <list default="true" id="69533b93-0c3e-4f74-90ea-41a9010711cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaiMai.sol" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WaiMai/WaiMai.abi" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai/WaiMai.abi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WaiMai/WaiMai.bin" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai/WaiMai.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mytest/src/components/allorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/allorder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mytest/src/components/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/myorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/myorder.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mytest/src/components/registe.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/registe.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +49,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mytest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -108,6 +113,7 @@
       <workItem from="1623895573232" duration="4994000" />
       <workItem from="1623912819108" duration="6623000" />
       <workItem from="1623926507472" duration="5456000" />
+      <workItem from="1624109530060" duration="1924000" />
     </task>
     <servers />
   </component>

@@ -13,6 +13,7 @@ contract WaiMai {
         string dept;    // dept
     }
 
+    //订单结构体
     struct Deal{
         uint id;       //id
         string text;   //text
@@ -33,18 +34,17 @@ contract WaiMai {
     mapping(address => bool) isPlay;    // 判断某个地址（即账户）是否参与
     //event Insert(uint id);
     uint deal_num; //deal数目
-    uint[] deal_ids;
-    Deal[] deals;
+    uint[] deal_ids;//订单号数组
+    Deal[] deals;//储存所有订单的数据
     
     User current_user = User(address(0x0), 0,"null", "null", 0, "null");
     User deal_user = User(address(0x0), 0,"null", "null", 0, "null");
     Deal current_deal = Deal(0,"null",address(0x0),0,address(0x0),false,0,false,"null");
 
-
+    //初始玩家数和订单数设置为0
     constructor() {
         num = 0;
         deal_num = 0;
-    
     }
 
     //test智能合约用来测试是否连上了以太坊，是测试用例
@@ -104,10 +104,48 @@ contract WaiMai {
 
         uint deal_money = current_deal.money;
 
+        
+        for (uint i = 0; i < num; ++i) {
+            if (users[i].addr == current_deal.send_user) {
+                deal_user = users[i];
+                require(users[i].money>deal_money);
+                users[i].money = users[i].money - deal_money;
+            }
+        }
+
 
         for (uint i = 0; i < num; ++i) {
             if (users[i].addr == msg.sender) {
                 current_user = users[i];
+                users[i].money = users[i].money + deal_money;
+            }
+        }
+
+    }
+
+    //cancel a deal
+    function cancel_deal(uint _id) public{
+        require(deal_num>0);
+        require(isPlay[msg.sender]);
+        
+        for (uint i = 0; i < deal_num; ++i) {
+            if (deals[i].id == _id) {
+                current_deal = deals[i];
+                require(deals[i].receive_user == msg.sender);
+                require(deals[i].is_finish == true);
+                require(deals[i].is_timeout == false);
+                deals[i].receive_user = address(0x0);
+                deals[i].is_finish = false;
+            }
+        }
+
+        require(current_deal.send_user!=msg.sender);
+
+        uint deal_money = current_deal.money;
+
+        for (uint i = 0; i < num; ++i) {
+            if (users[i].addr == msg.sender) {
+                deal_user = users[i];
                 require(users[i].money>deal_money);
                 users[i].money = users[i].money - deal_money;
             }
@@ -115,30 +153,46 @@ contract WaiMai {
 
         for (uint i = 0; i < num; ++i) {
             if (users[i].addr == current_deal.send_user) {
-                deal_user = users[i];
+                current_user = users[i];
                 users[i].money = users[i].money + deal_money;
             }
         }
+
+    
     }
 
-
-     function update_dealtime(uint _time_minus_hour) public{
-        for (uint i = 0; i < deal_num; ++i) {
-            if(deals[i].left_hour>1){
-                deals[i].left_hour = deals[i].left_hour - _time_minus_hour;
-            }else{
-                deals[i].is_timeout = true;
-                deals[i].is_finish = true;
+    //current user's information
+    function select_myself() public view returns (User memory){
+        require(num>0);
+        require(isPlay[msg.sender]);
+        for (uint i = 0; i < num; ++i) {
+            if (users[i].addr == msg.sender) {
+                return users[i];
             }
-            // if(deals[i].left_hour<0){
-            //     deals[i].is_timeout = true;
-            //     deals[i].is_finish = true;
-            // }
         }
-     }
+        return User(msg.sender, 0,"null", "null", 0, "null");
+    }
 
+    //update time limit of all deals
+    function update_dealtime(uint _time_minus_hour) public{
+        if(deal_num>0){
+            for (uint i = 0; i < deal_num; ++i) {
+                if(deals[i].is_finish == false){
+                    if(deals[i].left_hour>1){
+                        deals[i].left_hour = deals[i].left_hour - _time_minus_hour;
+                    }else{
+                        deals[i].is_timeout = true;
+                        deals[i].is_finish = true;
+                    }
+                }
+                // if(deals[i].left_hour<0){
+                //     deals[i].is_timeout = true;
+                //     deals[i].is_finish = true;
+                // }
+            }
+        }
 
-
+    }
 
 
 //unused
