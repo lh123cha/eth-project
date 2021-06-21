@@ -258,6 +258,32 @@ def myorder():
         print("myorder is: ",jsonList)
         jsonArr = json.dumps(jsonList, ensure_ascii=False)
         return jsonArr
+
+@app.route('/myreceiveorder',methods=['POST'])
+def myreceiveorder():
+    if request.method=='POST':
+        deals = WaiMai_contract.functions.select_all().call()
+        list1 = []
+        for deal in deals:
+            if(deal[4]==eth.default_account):
+                list2 = []
+                for j in range(9):
+                    list2.append(deal[j])
+                list1.append(list2)
+        jsonList = []
+        for list in list1:
+            aItem = {}
+            print("list is ", list)
+            aItem["id"] = list[0]
+            aItem["username"] = list[2]
+            aItem["money"] = list[3]
+            aItem["mission"] = list[1]
+            aItem["tip"] = list[8]
+            aItem["time"] = list[6]
+            jsonList.append(aItem)
+        print("myorder is: ",jsonList)
+        jsonArr = json.dumps(jsonList, ensure_ascii=False)
+        return jsonArr
 #
 # 配置自动任务的类
 class Config(object):

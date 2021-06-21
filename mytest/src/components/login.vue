@@ -70,6 +70,16 @@ export default{
   background-position: center right;
   background-size: 100%;
 }
+.login-container {
+  border-radius: 15px;
+  background-clip: padding-box;
+  margin: 90px auto;
+  width: 350px;
+  padding: 35px 35px 15px 35px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 0 25px #cac6c6;
+}
 
 
 </style>
