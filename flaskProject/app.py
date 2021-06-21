@@ -196,6 +196,7 @@ def cancel_deal():
             tx_hash = WaiMai_contract.functions.cancel_deal(deal_id).transact()
             tx_receipt = eth.waitForTransactionReceipt(tx_hash)
             in_json = '{"statue": 1, "msg": "success"}'
+            print("cancle success\n")
             return json.loads(in_json)
         except:
             in_json = '{"statue": 0, "msg": "failed"}'
@@ -221,9 +222,8 @@ def myself():
         aItem["tel"] = my[3]
         aItem["money"] = my[4]
         aItem["dept"] = my[5]
-        jsonList.append(aItem)
-        print(jsonList)
-        jsonArr = json.dumps(jsonList, ensure_ascii=False)
+        print(aItem)
+        jsonArr = json.dumps(aItem, ensure_ascii=False)
         return jsonArr
 
 
@@ -232,6 +232,32 @@ def myself():
 
 
 # 618 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#620 add myorder lh*******************************************************************************************
+@app.route('/myorder',methods=['POST'])
+def myorder():
+    if request.method=='POST':
+        deals = WaiMai_contract.functions.select_all().call()
+        list1 = []
+        for deal in deals:
+            if(deal[2]==eth.default_account):
+                list2 = []
+                for j in range(9):
+                    list2.append(deal[j])
+                list1.append(list2)
+        jsonList = []
+        for list in list1:
+            aItem = {}
+            print("list is ", list)
+            aItem["id"] = list[0]
+            aItem["username"] = list[2]
+            aItem["money"] = list[3]
+            aItem["mission"] = list[1]
+            aItem["tip"] = list[8]
+            aItem["time"] = list[6]
+            jsonList.append(aItem)
+        print("myorder is: ",jsonList)
+        jsonArr = json.dumps(jsonList, ensure_ascii=False)
+        return jsonArr
 #
 # 配置自动任务的类
 class Config(object):

@@ -104,7 +104,7 @@ export default {
     }, 1500)
     this.$nextTick(() => {
       // 在此处执行你要执行的函数
-      this.$axios.post(this.HOST+'/admin').then(result=>{
+      this.$axios.post(this.HOST+'/myorder').then(result=>{
         this.tableData=result.data
       })
     });

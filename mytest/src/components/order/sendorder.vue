@@ -56,10 +56,17 @@ export default{
 
       this.$axios.post(this.HOST+'/add'
         , params).then(result=>{
+          this.$message({
+          type: 'success',
+          message: '订单发布成功'
+        })
         console.log(result.data)
         this.msg = result.data.msg
       }).catch(resp =>{
-        console.log(resp);
+        this.$message({
+          type: 'warning',
+          message: '订单发布失败'
+        })
       });
 
     }

@@ -6,6 +6,7 @@
       <el-menu-item index="/order_home/basetable"><i class="el-icon-tickets"></i>全部订单</el-menu-item>
       <el-menu-item index="/order_home/sendorder"><i class="el-icon-plus"></i>发起订单</el-menu-item>
       <el-menu-item index="/order_home/myorder"><i class="el-icon-date"></i>我的订单</el-menu-item>
+      <el-menu-item index="/order_home/myself"><i class="el-icon-water-cup"></i>我的信息</el-menu-item>
 <!--      <el-menu-item index="/home/mainActive"><i class="el-icon-menu"></i>主页</el-menu-item>-->
 <!--      <el-menu-item index="/home/markdown"><i class="el-icon-edit"></i>markdown</el-menu-item>-->
     </el-menu>
