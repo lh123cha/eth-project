@@ -348,7 +348,7 @@ def update():
     tx_hash = WaiMai_contract.functions.update_dealtime(1).transact()
     tx_receipt = eth.waitForTransactionReceipt(tx_hash)
     print("update success!")
-    eth.default_account = now_account;
+    eth.default_account = now_account
 
 
 # except:
@@ -363,7 +363,7 @@ def bonus():
     tx_hash = WaiMai_contract.functions.bonus_money(10).transact()
     tx_receipt = eth.waitForTransactionReceipt(tx_hash)
     print("bonus success!")
-    eth.default_account = now_account;
+    eth.default_account = now_account
 
 
 # except:
