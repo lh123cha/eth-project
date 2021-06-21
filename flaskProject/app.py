@@ -120,11 +120,12 @@ def output():
         deals = WaiMai_contract.functions.select_all().call()
         list1 = []
         for deal in deals:
-            print("deal is :", deal)
-            list2 = []
-            for j in range(9):
-                list2.append(deal[j])
-            list1.append(list2)
+            if (deal[5] == False):
+                print("deal is :", deal)
+                list2 = []
+                for j in range(12):
+                    list2.append(deal[j])
+                list1.append(list2)
         print("list1 is: ", list1)
         jsonList = []
         for list in list1:
@@ -204,6 +205,32 @@ def cancel_deal():
     # except:
     #   return "<h1>接单失败</h1>"
 
+# 621 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+@app.route('/finish_deal_again', methods=['POST'])
+# @login_required
+def finish_deal_again():
+    if request.method == 'POST':
+        # try:
+        # eth.default_account = current_user.get_id()
+        try:
+            data = request.get_data()
+            print("data = %s" % data)
+            json_data = json.loads(data.decode("utf-8"))
+            name = json_data.get("Name")
+            deal_id = int(name)
+            print(eth.default_account)
+            print(deal_id)
+            tx_hash = WaiMai_contract.functions.finish_deal_again(deal_id).transact()
+            tx_receipt = eth.waitForTransactionReceipt(tx_hash)
+            in_json = '{"statue": 1, "msg": "success"}'
+            return json.loads(in_json)
+        except:
+            in_json = '{"statue": 0, "msg": "failed"}'
+            return json.loads(in_json)
+    # except:
+    #   return "<h1>接单失败</h1>"
+
+
 
 # 618 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # 返回当前账户个人信息
@@ -227,21 +254,24 @@ def myself():
         return jsonArr
 
 
+
+
 # except:
 #     return "<h1>查看信息失败</h1>"
 
 
 # 618 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#620 add myorder lh*******************************************************************************************
-@app.route('/myorder',methods=['POST'])
+# add myorder lh*******************************************************************************************
+@app.route('/myorder', methods=['POST'])
 def myorder():
-    if request.method=='POST':
+    if request.method == 'POST':
         deals = WaiMai_contract.functions.select_all().call()
         list1 = []
         for deal in deals:
-            if(deal[2]==eth.default_account):
+            if (deal[2] == eth.default_account and deal[5] == True):
+                print("deal is :", deal)
                 list2 = []
-                for j in range(9):
+                for j in range(12):
                     list2.append(deal[j])
                 list1.append(list2)
         jsonList = []
@@ -255,19 +285,22 @@ def myorder():
             aItem["tip"] = list[8]
             aItem["time"] = list[6]
             jsonList.append(aItem)
-        print("myorder is: ",jsonList)
+        print("myorder is: ", jsonList)
         jsonArr = json.dumps(jsonList, ensure_ascii=False)
         return jsonArr
 
-@app.route('/myreceiveorder',methods=['POST'])
+
+# 621 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+@app.route('/myreceiveorder', methods=['POST'])
 def myreceiveorder():
-    if request.method=='POST':
+    if request.method == 'POST':
         deals = WaiMai_contract.functions.select_all().call()
         list1 = []
         for deal in deals:
-            if(deal[4]==eth.default_account):
+            if (deal[4] == eth.default_account):
+                print("deal is :", deal)
                 list2 = []
-                for j in range(9):
+                for j in range(12):
                     list2.append(deal[j])
                 list1.append(list2)
         jsonList = []
@@ -281,9 +314,11 @@ def myreceiveorder():
             aItem["tip"] = list[8]
             aItem["time"] = list[6]
             jsonList.append(aItem)
-        print("myorder is: ",jsonList)
+        print("myorder is: ", jsonList)
         jsonArr = json.dumps(jsonList, ensure_ascii=False)
         return jsonArr
+
+
 #
 # 配置自动任务的类
 class Config(object):
@@ -292,26 +327,50 @@ class Config(object):
             'id': 'job1',
             'func': '__main__:update',
             'trigger': 'interval',
-            'seconds': 10,
+            'seconds': 20,
+
+        },
+        {
+            'id': 'job2',
+            'func': '__main__:bonus',
+            'trigger': 'interval',
+            'seconds': 60,
 
         },
     ]
 
-
+# 618 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def update():
     # try:
-        now_account = eth.default_account
-        eth.default_account = eth.accounts[0]
-        print("starting update!")
-        tx_hash = WaiMai_contract.functions.update_dealtime(1).transact()
-        tx_receipt = eth.waitForTransactionReceipt(tx_hash)
-        print("update success!")
-        eth.default_account = now_account;
-    # except:
-    #     print("update failed!")
+    now_account = eth.default_account
+    eth.default_account = eth.accounts[0]
+    print("starting update!")
+    tx_hash = WaiMai_contract.functions.update_dealtime(1).transact()
+    tx_receipt = eth.waitForTransactionReceipt(tx_hash)
+    print("update success!")
+    eth.default_account = now_account;
 
 
-#unused
+# except:
+#     print("update failed!")
+
+# 621 edited by qk!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+def bonus():
+    # try:
+    now_account = eth.default_account
+    eth.default_account = eth.accounts[0]
+    print("starting bonus!")
+    tx_hash = WaiMai_contract.functions.bonus_money(10).transact()
+    tx_receipt = eth.waitForTransactionReceipt(tx_hash)
+    print("bonus success!")
+    eth.default_account = now_account;
+
+
+# except:
+#     print("update failed!")
+
+
+# unused
 @app.route('/query/<int:key>')
 # @login_required
 def query_process(key):

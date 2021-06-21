@@ -20,10 +20,13 @@ contract WaiMai {
         address send_user;  //senduser address
         uint money;     //money
         address receive_user;   //receiveuser address
-        bool is_finish;  //whether deal is finish
+        bool is_finish;  //whether deal is receive by receiver
         uint left_hour;  //hour time left
         bool is_timeout;  //whether time is out
         string tip; //tip of the deal
+        bool is_finish_again; //whether deal is confirmed by sender
+        string sender_tel;     // telephone(sender)
+        string receiver_tel;     // telephone(receiver)
 
     }
 
@@ -39,7 +42,7 @@ contract WaiMai {
     
     User current_user = User(address(0x0), 0,"null", "null", 0, "null");
     User deal_user = User(address(0x0), 0,"null", "null", 0, "null");
-    Deal current_deal = Deal(0,"null",address(0x0),0,address(0x0),false,0,false,"null");
+    Deal current_deal = Deal(0,"null",address(0x0),0,address(0x0),false,0,false,"null",false,"null","null");
 
     //初始玩家数和订单数设置为0
     constructor() {
@@ -73,7 +76,7 @@ contract WaiMai {
                 current_user = users[i];
             }
         }
-        deals.push(Deal(deal_num,_text,msg.sender,_money,address(0x0),false,_time,false,_tip));
+        deals.push(Deal(deal_num,_text,msg.sender,_money,address(0x0),false,_time,false,_tip,false,current_user.tel,"null"));
         deal_ids.push(deal_num);
         deal_num += 1;
     }
@@ -90,12 +93,20 @@ contract WaiMai {
         require(deal_num>0);
         require(isPlay[msg.sender]);
 
+        for (uint i = 0; i < num; ++i) {
+            if (users[i].addr == msg.sender) {
+                current_user = users[i];
+            }
+        }
+
         for (uint i = 0; i < deal_num; ++i) {
             if (deals[i].id == _id) {
                 current_deal = deals[i];
                 require(deals[i].is_finish == false);
                 require(deals[i].is_timeout == false);
+                require(deals[i].is_finish_again == false);
                 deals[i].receive_user = msg.sender;
+                deals[i].receiver_tel = current_user.tel;
                 deals[i].is_finish = true;
             }
         }
@@ -134,7 +145,9 @@ contract WaiMai {
                 require(deals[i].receive_user == msg.sender);
                 require(deals[i].is_finish == true);
                 require(deals[i].is_timeout == false);
+                require(deals[i].is_finish_again == false);
                 deals[i].receive_user = address(0x0);
+                deals[i].receiver_tel = "null";
                 deals[i].is_finish = false;
             }
         }
@@ -157,8 +170,22 @@ contract WaiMai {
                 users[i].money = users[i].money + deal_money;
             }
         }
+    }
 
-    
+    //sender confirm a deal after finished
+    function finish_deal_again(uint _id) public{
+        require(deal_num>0);
+        require(isPlay[msg.sender]);
+
+        for (uint i = 0; i < deal_num; ++i) {
+            if (deals[i].id == _id) {
+                current_deal = deals[i];
+                require(deals[i].is_finish == true);
+                require(deals[i].is_finish_again == false);
+                deals[i].is_finish_again = true;
+            }
+        }
+
     }
 
     //current user's information
@@ -172,6 +199,7 @@ contract WaiMai {
         }
         return User(msg.sender, 0,"null", "null", 0, "null");
     }
+
 
     //update time limit of all deals
     function update_dealtime(uint _time_minus_hour) public{
@@ -190,6 +218,14 @@ contract WaiMai {
                 //     deals[i].is_finish = true;
                 // }
             }
+        }
+
+    }
+
+    //bonus money for every user
+    function bonus_money(uint _money_bonus) public{
+        for (uint i = 0; i < num; ++i) {
+           users[i].money += _money_bonus;
         }
 
     }
