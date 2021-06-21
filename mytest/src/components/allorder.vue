@@ -23,6 +23,10 @@
 
         <el-table-column prop="time" label="剩余时间" sortable>
         </el-table-column>
+        <el-table-column prop="sendtelephone" label="发起者电话" sortable>
+        </el-table-column>
+        <el-table-column prop="receivetelephone" label="接收者电话" sortable>
+        </el-table-column>
 
         <el-table-column label="操作">
 

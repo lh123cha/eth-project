@@ -17,12 +17,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Registe',
-      component: Registe
+      name: 'Login',
+      component: Login
     },{
-    path:'/login',
-      name:'login',
-      component:Login
+    path:'/registe',
+      name:'Registe',
+      component:Registe
     },{
       path:'/order_home',
       component:Home,

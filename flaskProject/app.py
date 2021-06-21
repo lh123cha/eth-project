@@ -137,6 +137,8 @@ def output():
             aItem["mission"] = list[1]
             aItem["tip"] = list[8]
             aItem["time"] = list[6]
+            aItem["sendtelephone"] = list[10]
+            aItem["receivetelephone"] = list[11]
             jsonList.append(aItem)
         print(jsonList)
         jsonArr = json.dumps(jsonList, ensure_ascii=False)
@@ -284,6 +286,8 @@ def myorder():
             aItem["mission"] = list[1]
             aItem["tip"] = list[8]
             aItem["time"] = list[6]
+            aItem["sendtelephone"] = list[10]
+            aItem["receivetelephone"]=list[11]
             jsonList.append(aItem)
         print("myorder is: ", jsonList)
         jsonArr = json.dumps(jsonList, ensure_ascii=False)
@@ -313,6 +317,8 @@ def myreceiveorder():
             aItem["mission"] = list[1]
             aItem["tip"] = list[8]
             aItem["time"] = list[6]
+            aItem["sendtelephone"] = list[10]
+            aItem["receivetelephone"] = list[11]
             jsonList.append(aItem)
         print("myorder is: ", jsonList)
         jsonArr = json.dumps(jsonList, ensure_ascii=False)
