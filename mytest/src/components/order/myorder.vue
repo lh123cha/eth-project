@@ -24,13 +24,15 @@
 
         <el-table-column prop="time" label="时间限制" sortable>
         </el-table-column>
+        <el-table-column prop="sendtelephone" label="发起者电话" sortable>
+        </el-table-column>
+        <el-table-column prop="receivetelephone" label="接收者电话" sortable>
+        </el-table-column>
 
         <el-table-column label="操作">
 
           <template slot-scope="scope">
             <el-button size="small" type="success" @click="handleFinish(scope.$index, scope.row)">完成订单
-            </el-button>
-            <el-button size="small" type="danger" @click="handleCancle(scope.$index, scope.row)">取消接单
             </el-button>
           </template>
         </el-table-column>
@@ -158,37 +160,6 @@ export default {
       })
       this.dialogFormVisible = false
     },
-
-    handleCancle(index, row) {
-      this.$confirm('确定取消接收该订单', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.form = this.tableData[index]
-        this.currentIndex = index
-        let params={
-          Name:this.form.id
-        }
-
-        this.$axios.post(this.HOST+'/cancel_deal',params).then(result=>{
-          console.log(result.data)
-        }).catch(resp =>{
-          console.log(resp);
-        });
-        this.$message({
-          type: 'success',
-          message: '订单取消成功!'
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '取消失败'
-        })
-      })
-      this.dialogFormVisible = false
-    },
-
 
     cancel() {
       this.dialogFormVisible = false

@@ -14,6 +14,9 @@
       <el-form-item>
         <el-button style="" @click="doRegiste()">add</el-button>
       </el-form-item>
+      <el-form-item>
+        <el-button style="" @click="doskip()">我已完善信息</el-button>
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -60,7 +63,9 @@ export default{
       }).catch(resp =>{
         console.log(resp);
       });
-
+    },
+    doskip:function(){
+      this.$router.push('/order_home');
     }
   }
 }

@@ -47,7 +47,7 @@ export default{
                 return
               }
               else{
-                this.$router.push('/');
+                this.$router.push('/registe');
              }
       }).catch(resp =>{
         console.log(resp);
