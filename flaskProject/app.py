@@ -140,8 +140,8 @@ def output():
             aItem["sendtelephone"] = list[10]
             aItem["receivetelephone"] = list[11]
             jsonList.append(aItem)
-        print(jsonList)
         jsonArr = json.dumps(jsonList, ensure_ascii=False)
+        print("jsonArr is :",jsonArr)
         return jsonArr
 
 

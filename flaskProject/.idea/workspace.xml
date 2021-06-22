@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69533b93-0c3e-4f74-90ea-41a9010711cc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/flaskProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flaskProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WaiMai/WaiMai.bin" beforeDir="false" afterPath="$PROJECT_DIR$/WaiMai/WaiMai.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/allorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/allorder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/myorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/myorder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/order/myreceiveorder.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/order/myreceiveorder.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/components/registe.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/components/registe.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mytest/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../mytest/src/router/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="69533b93-0c3e-4f74-90ea-41a9010711cc" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +108,7 @@
       <workItem from="1624171856260" duration="913000" />
       <workItem from="1624255544486" duration="435000" />
       <workItem from="1624256294765" duration="6886000" />
-      <workItem from="1624266247453" duration="907000" />
+      <workItem from="1624266247453" duration="1138000" />
     </task>
     <servers />
   </component>
