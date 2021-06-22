@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69533b93-0c3e-4f74-90ea-41a9010711cc" name="Default Changelist" comment="" />
+    <list default="true" id="69533b93-0c3e-4f74-90ea-41a9010711cc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/flask函数说明.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/以太坊智能合约说明.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,6 +114,7 @@
       <workItem from="1624255544486" duration="435000" />
       <workItem from="1624256294765" duration="6886000" />
       <workItem from="1624266247453" duration="1138000" />
+      <workItem from="1624337791626" duration="1335000" />
     </task>
     <servers />
   </component>

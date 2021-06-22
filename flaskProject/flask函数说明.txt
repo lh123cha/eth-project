@@ -1,0 +1,63 @@
+flask路由函数说明：
+1.@app.route('/valid', methods=['POST'])
+def valid()
+判断当前用户是否合法
+
+2.@app.route('/information', methods=['POST'])
+def information()
+添加用户信息，对应智能合约中insert_user
+
+3.@app.route('/add', methods=['POST'])
+def add()
+添加订单信息，对应智能合约中insert_deal
+
+4.@app.route('/output', methods=['POST'])
+def output()
+获取所有待完成订单，对应智能合约中select_all
+
+5.@app.route('/finish_deal', methods=['POST'])
+def finish_deal()
+订单接收者接受订单，对应智能合约中finish_deal
+
+6.@app.route('/cancel_deal', methods=['POST'])
+def cancel_deal()
+订单接收者取消订单，对应智能合约中cancel_deal
+
+7.@app.route('/finish_deal_again', methods=['POST'])
+def finish_deal_again()
+订单发起者确认已完成订单，对应智能合约中finish_deal_again
+
+8.@app.route('/myself', methods=['POST'])
+def myself()
+返回当前用户信息，对应智能合约中myself
+
+9.@app.route('/myorder', methods=['POST'])
+def myorder()
+同output，但是返回前端时只保留接受发送者为自己且处于待完成状态的
+10.@app.route('/myreceiveorder', methods=['POST'])
+def myreceiveorder()
+同output，但是返回前端时只保留接受者为自己的订单
+
+定时函数APScheduler说明：
+配置两个定时函数：更新订单剩余时间和用户奖励
+class Config(object):
+    JOBS = [
+        {
+            'id': 'job1',
+            'func': '__main__:update',
+            'trigger': 'interval',
+            'seconds': 20,
+
+        },
+        {
+            'id': 'job2',
+            'func': '__main__:bonus',
+            'trigger': 'interval',
+            'seconds': 60,
+
+        },
+    ]
+
+def update() 定时调用智能合约中update_dealtime
+
+def bonus() 定时调用智能合约中bonus_money
