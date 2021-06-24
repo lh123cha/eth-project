@@ -48,7 +48,3 @@
 给所有用户发放奖励
 
 
-
-
-2.
- 1.insert_user(string memory _name,string memory _tel,string memory _dept) 插入用户信息
