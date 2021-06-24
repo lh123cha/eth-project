@@ -31,11 +31,11 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 可能有时会出现安装包版本过高的报错，这时需要卸载对应的安装包，再下载低版本的安装包。可以参考的解决方案：
 
-[vue-loader版本报错]: https://blog.csdn.net/qq_43329216/article/details/108670797
+[vue-loader版本报错_Source-CSDN博客_vue-loader版本](https://blog.csdn.net/qq_43329216/article/details/108670797)
 
+成功启动之后前端会运行再8080端口，进入http://localhost:8080
 
-
-成功启动之后前端会运行再8080端口，进入http://localhost:8080，进入登录界面说明安装启动成功。
+进入登录界面说明安装启动成功。
 
 ## 与后端交互
 
