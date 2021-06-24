@@ -77,6 +77,8 @@ def bonus() 定时调用智能合约中bonus_money
 ## 结构体功能说明（WaiMai.sol）：
 
 1.用户结构体
+
+```python
     struct User {
         address addr;       // address
         uint id;        //id
@@ -85,9 +87,13 @@ def bonus() 定时调用智能合约中bonus_money
         uint money;       // money
         string dept;    // dept
     }
+```
+
 保存用户的信息
 
 2.订单结构体
+
+```python
     struct Deal{
         uint id;       //id
         string text;   //text
@@ -102,26 +108,38 @@ def bonus() 定时调用智能合约中bonus_money
         string sender_tel;     // telephone(sender)
         string receiver_tel;     // telephone(receiver)
     }
+```
+
+保存订单的信息
+
 保存订单的信息
 
 ## 智能合约函数功能说明（WaiMai.sol）：
 
 1.function insert_user(string memory _name,string memory _tel,string memory _dept) public
 插入新的用户
+
 2.function insert_deal(string memory _text,uint _money,uint _time,string memory _tip) public
 插入新的订单
+
 3.function select_all() public view returns (Deal[] memory)
 查询所有订单并返回数据
+
 4.function finish_deal(uint _id) public
 订单接收者接受订单
+
 5.function cancel_deal(uint _id) public
 订单接收者取消订单
+
 6.function finish_deal_again(uint _id) public
 订单发起者确认已完成订单
+
 7.function select_myself() public view returns (User memory)
 返回当前用户信息
+
 8.function update_dealtime(uint _time_minus_hour) public
 将所有的订单的剩余时间进行更新
+
 9.function bonus_money(uint _money_bonus) public
 给所有用户发放奖励
 
