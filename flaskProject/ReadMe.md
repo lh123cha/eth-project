@@ -3,8 +3,11 @@
 ## 项目启动顺序：
 
 1.先开启ganache
+
 2.flask项目运行
+
 3.开启前端Vue服务
+
 4.访问localhost:8080的Vue前端
 
 ## flask路由函数说明（app.py）：
