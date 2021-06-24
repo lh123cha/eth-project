@@ -1,0 +1,5 @@
+ORGNAMEHASH="c4d8232af9e397b91c6d1dd969e6bebe4f68c64d"
+CHAIN_NAME="huaweichain"
+CONTRACT_NAME="huaweichaincode"
+SDK_CONFIG_FILE="bcs-iy7x95-huaweichain-sdk-config.yaml"
+EIP="124.71.82.247"

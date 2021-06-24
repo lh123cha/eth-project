@@ -1,0 +1,12 @@
+样例程序运行方式：
+
+1 修改configure配置文件
+ORGNAMEHASH：    组织hash值，即是下载证书中的一串字符xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+CHAIN_NAME:      业务链名，默认是huaweichain
+CONTRACT_NAME:   链代码名，默认是huaweichaincode，与安装的链代码名一致
+SDK_CONFIG_FILE: 下载的sdk名，与下载的sdk文件名一致
+EIP:             访问区块链管理的浏览器IP地址。
+
+2 运行命令
+chmod +x startGoClient.sh
+./startGoClient.sh
